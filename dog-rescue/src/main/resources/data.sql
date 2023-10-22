@@ -1,0 +1,10 @@
+INSERT INTO breed (name) VALUES ('Czech Working Line German Shepherd');
+INSERT INTO breed (name) VALUES ('American Show Line German Shepherd');
+INSERT INTO breed (name) VALUES ('Doberman Pincher');
+INSERT INTO breed (name) VALUES ('Golden Retriever');
+INSERT INTO breed (name) VALUES ('Australian Shepherd');
+INSERT INTO breed (name) VALUES ('Standard Schnauzer');
+INSERT INTO breed (name) VALUES ('Poodle');
+INSERT INTO breed (name) VALUES ('Rottweiler');
+INSERT INTO breed (name) VALUES ('French Bulldog');
+INSERT INTO breed (name) VALUES ('Boxer');

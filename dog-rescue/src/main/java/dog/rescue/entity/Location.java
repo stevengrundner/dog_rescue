@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -25,7 +27,9 @@ public class Location {
 	private String zip;
 	private String phone;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
+	@OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Dog> dogs = new HashSet<>();
 
 }

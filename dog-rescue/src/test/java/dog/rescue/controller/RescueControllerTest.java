@@ -19,7 +19,7 @@ import dog.rescue.controller.model.LocationData;
 class RescueControllerTest extends RescueServiceTestSupport {
 
 	@Test
-	void testInsertLocation() {
+	void testInsertLocation() { 
 		// Given: A location request
 		LocationData request = buildInsertLocation(1);
 		LocationData expected = buildInsertLocation(1);
@@ -34,6 +34,22 @@ class RescueControllerTest extends RescueServiceTestSupport {
 		assertThat(rowsInLocationTable()).isOne();
 		
 	}
+	
+	@Test
+	void testRetrieveLocation() { //THIS KEEPS COMING UP WITH AN ERROR
+		// GIVEN: a location
+		LocationData location = insertLocation(buildInsertLocation(1));
+		LocationData expected = buildInsertLocation(1);
+		
+		// WHEN: the location is retrieved by location ID
+		LocationData actual = retrieveLocation(location.getLocationId());
+		
+		// THEN: the actual location is equal to the expected location
+		assertThat(actual).isEqualTo(expected);
+	}
+
+	
+	
 
 	
 

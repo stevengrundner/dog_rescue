@@ -34,6 +34,17 @@ public class RescueServiceTestSupport {
 			"32556", 
 			"(850) 204-9485"
 			);
+	
+	private LocationData updateAddress1 = new LocationData(
+			1L, 
+			"Glen Lake Dog Rescue Society", 
+			"8 East Glenlake Drive",
+			"Wadsworth", 
+			"Ohio", 
+			"83241", 
+			"(330) 336-2105"
+			);
+				
 	// @formatter: on
 
 	@Autowired
@@ -83,7 +94,13 @@ public class RescueServiceTestSupport {
 		return data;
 	}
 
+	protected LocationData updateLocation(LocationData locationData) {
+		return rescueController.updateLocation(locationData.getLocationId(), locationData);
+	}
 
+	protected LocationData buildUpdateLocation() {
+		return updateAddress1;
+	}
 
 
 

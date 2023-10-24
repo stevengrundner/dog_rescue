@@ -2,6 +2,8 @@ package dog.rescue.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -19,42 +21,45 @@ import dog.rescue.controller.model.LocationData;
 class RescueControllerTest extends RescueServiceTestSupport {
 
 	@Test
-	void testInsertLocation() { 
+	void testInsertLocation() {
 		// Given: A location request
 		LocationData request = buildInsertLocation(1);
 		LocationData expected = buildInsertLocation(1);
 
 		// When: the location is added to the location table
 		LocationData actual = insertLocation(request);
-		
+
 		// Then: the location returned is what is expected
 		assertThat(actual).isEqualTo(expected);
-		
+
 		// And: there is one row in the location table
 		assertThat(rowsInLocationTable()).isOne();
-		
+
 	}
-	
+
 	@Test
-	void testRetrieveLocation() { //THIS KEEPS COMING UP WITH AN ERROR
+	void testRetrieveLocation() { // THIS KEEPS COMING UP WITH AN ERROR
 		// GIVEN: a location
 		LocationData location = insertLocation(buildInsertLocation(1));
 		LocationData expected = buildInsertLocation(1);
-		
+
 		// WHEN: the location is retrieved by location ID
 		LocationData actual = retrieveLocation(location.getLocationId());
-		
+
 		// THEN: the actual location is equal to the expected location
 		assertThat(actual).isEqualTo(expected);
 	}
 
-	
-	
+	@Test
+	void testRetrieveAllLocations() {
+		// GIVEN: two locations
+		List<LocationData> expected = insertTwoLocations();
 
-	
+		// WHEN: all locations are retrieved
+		List<LocationData> actual = retrieveAllLocations();
 
-	
-
-	
+		// THEN: the retrieved locations are the same as expected.
+		assertThat(sorted(actual)).isEqualTo(sorted(expected));
+	}
 
 }

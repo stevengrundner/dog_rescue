@@ -1,5 +1,6 @@
 package dog.rescue.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,39 @@ public class RescueService {
 
 	}
 
+	@Transactional(readOnly = true)
+	public List<LocationData> retrieveAllLocations() {
+//		List<Location> locationEntities = locationDao.findAll();
+//		List<LocationData> locationDtos = new LinkedList<>();
+//
+//		locationEntities.sort((loc1, loc2) -> loc1.getBusinessName().compareTo(loc2.getBusinessName)
+//		for (Location location : locationEntities) {
+//			LocationData locationData = new LocationData(location);
+//			locationDtos.add(locationData);
+//		}
+//		return locationDtos;
+//	} 
+// FIRST WAY OF DOING THIS
+
+		// @formatter:off
+//		return locationDao.findAll()
+//				.stream()
+//				.map(loc -> new LocationData(loc))
+//				.toList();
+		// @formatter:on
+
+// SECOND WAY OF DOING THIS USING A LAMDA OPERATOR
+
+		// @formatter:off
+
+		return locationDao.findAll()
+				.stream()
+				.sorted((loc1, loc2) -> loc1.getBusinessName().compareTo(loc2.getBusinessName()))
+				.map(LocationData::new)
+				.toList();
+		
+		// @formatter:on
+
+// THIRD WAY OF DOING THIS
+	}
 }
